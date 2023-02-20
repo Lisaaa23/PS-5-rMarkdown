@@ -1,0 +1,212 @@
+---
+title: "ps5 Rmarkdown"
+author: "Lisa Lu"
+date: "2023-02-17"
+output: html_document
+---
+1.1-3
+```{r}
+library(readr)
+library(stringr)
+library(dplyr)
+g <- read.delim("gapminder.csv")
+
+nrow(g)
+ncol(g)
+
+sample_n(g, 10)
+```
+It lists 10 random data for me and it looks alright for me.
+
+2.1-3
+```{r}
+length(unique(g$iso3))
+length(unique(g$iso2))
+length(unique(g$name))
+
+g %>% 
+  group_by(iso2) %>% 
+  summarise(n1 = n_distinct(name))
+  
+unique(g$name[g$iso2 == ""])
+
+
+g %>% 
+  group_by(name) %>% 
+  summarise(n2 = n_distinct(iso3))
+
+unique(g$iso3[g$name == ""])
+
+min(g$time, na.rm = TRUE)
+max(g$time, na.rm = TRUE)
+```
+
+3.1
+```{r}
+a <- g %>% 
+  group_by(time) %>% 
+  filter(!is.na(time)) %>%
+  summarise(n1 = length(is.na(co2)), n2 = length(is.na(co2_PC)), total = n1+n2)
+a
+
+a$time[a$total == max(a$total)]
+
+
+```
+
+3.2
+```{r}
+library(tidyverse)
+
+g %>% 
+  filter(!is.na(co2)) %>% 
+  filter(iso3 == "USA" | iso3 == "CHN" | iso3 == "IND" | iso3 == "AND" |
+           iso3 == "ARG") %>% 
+
+
+ggplot(aes(time, co2, col=factor(iso3))) +
+  geom_line() +
+  geom_point() + 
+  labs(x = "Time (years)", y = "CO2 Emissions", 
+       col = "Country")
+```
+
+I see that China has increased CO2 emissions drastically compared to other countries. The U.S.is trying to decrease CO2 emissions in recent years, and the use of CO2 in India have been increasing constantly. CO2 emissions in Argentina and Andorra is neither increasing nor decreasing and they always remain at the same level.
+
+3.3
+```{r}
+g %>% 
+  filter(!is.na(co2)) %>% 
+  filter(iso3 == "USA" | iso3 == "CHN" | iso3 == "IND" | iso3 == "AND" |
+           iso3 == "ARG") %>%
+  
+ggplot(aes(time, co2_PC, col=factor(iso3))) +
+  geom_line() +
+  geom_point() + 
+  labs(x = "Time (years)", y = "CO2 Emissions Per Capita", 
+       col = "Country")
+```
+
+The plot shows that the CO2 emissions per capita is the highest in U.S. ON the other hand, CO2 emissions per capita in China, Argentina, and India are slightly increasing each year. Andorra seems to only have CO2 emission staring around 1990 and emission per capita has been decreasing since 2000. 
+
+3.4
+```{r}
+g %>% 
+  filter(!is.na(co2_PC)) %>% 
+  group_by(time, region) %>% 
+  summarize(n= mean(co2_PC))
+
+```
+This shows the mean of CO2 emissions per capita each continent release each year. In this chart we can obeserve the difference and whether there is an increase or decrease in different continents with their average CO2 emissions per capita.
+
+3.5
+```{r}
+g %>% 
+  filter(time == 1960 | time ==2016, !is.na(co2_PC), !is.na(region)) %>% 
+  filter(region != "") %>% 
+  group_by(time, region) %>% 
+  summarise(avg_co2PC = mean(co2_PC), .groups = "drop") %>% 
+  ggplot(aes(x = region, y = avg_co2PC, fill = as.factor(time))) +
+  geom_col(position = "dodge") +
+    labs(title = "Average CO2 Emissions Per Capita by Year and Contineny",
+         x = "Continent",
+         y = "Average CO2 Emissions Per Capita") +
+  scale_fill_discrete(name = "Year")
+```
+
+3.6
+```{r}
+g %>% 
+  filter(!is.na(co2_PC), time == 2016,  region != "") %>% 
+  group_by(region, name) %>% 
+  summarise(avg_co2pc = mean(co2_PC), .groups = "drop") %>% 
+  arrange(region, avg_co2pc) %>% 
+  group_by(region) %>% 
+  head(3) %>% 
+  select(region, name, avg_co2pc)
+```
+
+
+
+
+
+4.1
+```{r}
+g %>% 
+  filter(time == 1960) %>% 
+  filter(!is.na(GDP_PC), !is.na(lifeExpectancy), !is.na(region)) %>% 
+ggplot(aes(GDP_PC, lifeExpectancy, col=factor(region))) +
+  geom_point() +
+  labs(x = "GDP Per Capita (1960)", y = "Life Expectancy(1960)",
+       col = "Continent")
+```
+This plot shows that European countries regardless of their GDP per capita overall have higher life expectancy. Africa, Asia, and Americas overall have lower GDP per capita but Americas and Asia have slightly higher life expectancy compared to Africa.
+
+4.2
+```{r}
+g %>% 
+  filter(time == 2019) %>% 
+  filter(!is.na(GDP_PC), !is.na(lifeExpectancy), !is.na(region), region != "") %>% 
+ggplot(aes(GDP_PC, lifeExpectancy, col=factor(region))) +
+  geom_point() +
+  labs(x = "GDP Per Capita (2016)", y = "Life Expectancy(2016)",
+       col = "Continent")
+```
+4.3. Countries have been stabilized in the similar positions where Europe is still at the top and Africa at the bottom. The only obvious changes as we can see is that people live longer than they were 60 years ago and that there is a drastic increase in GDP per capita too.
+
+4.4
+```{r}
+g %>% 
+  filter(!is.na(lifeExpectancy)) %>% 
+  group_by(region) %>% 
+  filter(time == 1960 | time == 2019) %>% 
+  summarise(n = mean(lifeExpectancy))
+```
+
+4.5
+```{r}
+g %>% 
+  filter(time == 1960 | time == 2019) %>% 
+  filter(!is.na(region), !is.na(lifeExpectancy), region != "") %>%
+  group_by(region, time) %>% 
+  summarise(avr = mean(lifeExpectancy), .groups = "drop") %>% 
+  mutate(pre = lag(avr), growth = avr - pre) %>%  
+  arrange(-growth)
+```
+
+4.6
+```{r}
+g %>% 
+  filter(time == 1960 | time == 2019, !is.na(GDP_PC)) %>% 
+  group_by(time) %>% 
+  summarise(avg_gdp = mean(GDP_PC), .groups = "drop") %>% 
+  
+ggplot(aes(x = time, y = avg_gdp, fill = as.factor(time))) +
+  geom_col(position = "dodge") +
+  labs(title = "GDP Per Capita for Years of 1960 and 2019",
+       x = "Year", y = "GDP per Capita") +
+  scale_fill_discrete(name = "Year")
+```
+
+4.7
+```{r}
+g %>% 
+  select(name, time, lifeExpectancy) %>% 
+  filter(name !="", !is.na(time), !is.na(lifeExpectancy)) %>% 
+  filter(time == "1960") %>% 
+  mutate(rank = rank(desc(lifeExpectancy))) %>% 
+  filter(name == "United States of America")
+
+g %>% 
+  select(name, time, lifeExpectancy) %>% 
+  filter(name !="", !is.na(time), !is.na(lifeExpectancy)) %>% 
+  filter(time == "2019") %>% 
+  mutate(rank = rank(desc(lifeExpectancy))) %>% 
+  filter(name == "United States of America")
+```
+
+4.8
+```{r}
+
+```
+
