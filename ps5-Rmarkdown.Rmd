@@ -171,11 +171,14 @@ g %>%
   filter(time == 1960 | time == 2019) %>% 
   filter(!is.na(region), !is.na(lifeExpectancy), region != "") %>%
   group_by(region, time) %>% 
-  summarise(avr = mean(lifeExpectancy), .groups = "drop") %>% 
+  summarise(avr = mean(lifeExpectancy), .groups = "drop") %>%
+  group_by(region) %>% 
   mutate(pre = lag(avr), growth = avr - pre) %>%
   filter(!is.na(pre)) %>% 
   arrange(growth)
 ```
+
+
 
 4.6
 ```{r}
