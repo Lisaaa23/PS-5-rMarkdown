@@ -376,61 +376,61 @@ nrow(g)</code></pre>
 <pre class="r"><code>ncol(g)</code></pre>
 <pre><code>## [1] 25</code></pre>
 <pre class="r"><code>sample_n(g, 10)</code></pre>
-<pre><code>##    iso3                   name iso2   region                      sub.region
-## 1   GHA                  Ghana   GH   Africa              Sub-Saharan Africa
-## 2   CYM         Cayman Islands   KY Americas Latin America and the Caribbean
-## 3   BIH Bosnia and Herzegovina   BA   Europe                 Southern Europe
-## 4   UGA                 Uganda   UG   Africa              Sub-Saharan Africa
-## 5   ATG    Antigua and Barbuda   AG Americas Latin America and the Caribbean
-## 6   GUM                   Guam   GU  Oceania                      Micronesia
-## 7   KOS                                                                     
-## 8   MRT             Mauritania   MR   Africa              Sub-Saharan Africa
-## 9   SYC             Seychelles   SC   Africa              Sub-Saharan Africa
-## 10  SVN               Slovenia   SI   Europe                 Southern Europe
+<pre><code>##       iso3             name iso2   region                      sub.region
+## 1      PYF French Polynesia   PF  Oceania                       Polynesia
+## 2      NPL            Nepal   NP     Asia                   Southern Asia
+## 3  CHANISL                                                               
+## 4      CUB             Cuba   CU Americas Latin America and the Caribbean
+## 5      NIC        Nicaragua   NI Americas Latin America and the Caribbean
+## 6      NRU            Nauru   NR  Oceania                      Micronesia
+## 7      CZE          Czechia   CZ   Europe                  Eastern Europe
+## 8      SWE           Sweden   SE   Europe                 Northern Europe
+## 9      SMR       San Marino   SM   Europe                 Southern Europe
+## 10     DZA          Algeria   DZ   Africa                 Northern Africa
 ##    intermediate.region time totalPopulation fertilityRate lifeExpectancy
-## 1       Western Africa 1989        14353410         5.710       56.27100
-## 2            Caribbean 2005           49261            NA             NA
-## 3                      1974         3942225         2.580       68.39000
-## 4       Eastern Africa 2013        35695246         5.699       59.88100
-## 5            Caribbean 2003           79300         2.140       74.61300
-## 6                      1999          153953         2.846       74.64600
-## 7                      1988         1791000         4.260       66.59512
-## 8       Western Africa 1971         1181674         6.774       50.78800
-## 9       Eastern Africa 2016           94677         2.390       74.30976
-## 10                     2011         2052843         1.560       79.97073
+## 1                      1968          103342         5.174       59.45200
+## 2                      1983        16100617         5.597       48.85200
+## 3                      1971          122413         2.019       71.91900
+## 4            Caribbean 1981         9898889         1.848       74.00400
+## 5      Central America 1987         3909671         5.104       62.07900
+## 6                      1994           10498            NA             NA
+## 7                      2011        10496088         1.430       77.87317
+## 8                      1969         7968072         1.930       74.08488
+## 9                      2013           32553            NA             NA
+## 10                     2008        34730608         2.728       74.31100
 ##    childMortality youthFemaleLiteracy youthMaleLiteracy adultLiteracy
-## 1           132.3                  NA                NA            NA
-## 2              NA                  NA                NA            NA
+## 1              NA                  NA                NA            NA
+## 2           188.4                  NA                NA            NA
 ## 3              NA                  NA                NA            NA
-## 4            63.3                  NA                NA            NA
-## 5            14.1                  NA                NA            NA
-## 6              NA                  NA                NA            NA
-## 7              NA                  NA                NA            NA
-## 8           190.7                  NA                NA            NA
-## 9            14.8                  NA                NA            NA
-## 10            3.1                  NA                NA            NA
+## 4            21.0                  NA                NA      97.84665
+## 5            75.5                  NA                NA            NA
+## 6            51.2                  NA                NA            NA
+## 7             3.3                  NA                NA            NA
+## 8            13.9                  NA                NA            NA
+## 9             2.2                  NA                NA            NA
+## 10           29.5            91.73993          95.74706      75.13605
 ##        GDP_PC accessElectricity agriculturalLand agricultureTractors
-## 1    812.8900                NA         125000.0                1932
-## 2          NA          100.0000             27.0                  NA
-## 3          NA                NA               NA                  NA
-## 4    875.4733           13.9000         144150.0                  NA
-## 5  12869.4369           97.8657             90.0                  NA
-## 6          NA          100.0000            200.0                  NA
-## 7          NA                NA               NA                  NA
-## 8   1980.9816                NA         394930.0                 120
-## 9  13606.0905          100.0000             15.5                  NA
-## 10 23662.8308          100.0000           6206.1                  NA
-##    cerealProduction fertilizerHa       co2 greenhouseGases  co2_PC pm2.5_35
-## 1           1183700      3.26154  3344.304     25116.85100 0.23300       NA
-## 2                NA           NA   473.043              NA 9.60279       NA
-## 3                NA           NA        NA     25690.56270      NA       NA
-## 4           3508500      2.44170  4407.734              NA 0.12348 99.97967
-## 5                55     27.25000   403.370       418.83796 5.08663       NA
-## 6                25           NA        NA        68.24434      NA       NA
-## 7                NA           NA        NA              NA      NA       NA
-## 8             55590           NA   399.703      4811.35560 0.33825       NA
-## 9                NA    521.73333   605.055              NA 6.39073  0.00000
-## 10           611690    256.50664 15159.378     21513.47647 7.38458  0.00000
+## 1          NA                NA              440                 110
+## 2    285.7947                NA            41102                2690
+## 3          NA                NA               89                  NA
+## 4   3624.9167                NA            59380               65943
+## 5   1398.4093                NA            38890                2480
+## 6          NA                NA                4                  NA
+## 7  20269.4874             100.0            42290                  NA
+## 8  25078.7403                NA            37450              175000
+## 9  48865.6182             100.0               10                  NA
+## 10  4408.3776              99.3           413090              104529
+##    cerealProduction fertilizerHa        co2 greenhouseGases   co2_PC pm2.5_35
+## 1                NA           NA    154.014              NA  1.49033       NA
+## 2           4310790     16.25131    495.045       23879.851  0.03075       NA
+## 3                NA           NA         NA              NA       NA       NA
+## 4            556987    202.44700  32749.977       57498.086  3.30845       NA
+## 5            455113     40.32000   2438.555        9149.835  0.62372       NA
+## 6                NA           NA    110.010              NA 10.47914       NA
+## 7           8289282    100.57649 107993.150      144613.247 10.28890  3.51025
+## 8           3982330    155.05867  86467.860              NA 10.85179       NA
+## 9                NA           NA         NA              NA       NA       NA
+## 10          1536002      8.57671 110208.018      160415.277  3.17322       NA
 ##    battleDeaths
 ## 1            NA
 ## 2            NA
@@ -441,7 +441,7 @@ nrow(g)</code></pre>
 ## 7            NA
 ## 8            NA
 ## 9            NA
-## 10           NA</code></pre>
+## 10          339</code></pre>
 <p>It lists 10 random data for me and it looks alright for me.</p>
 <p>2.1-3</p>
 <pre class="r"><code>length(unique(g$iso3))</code></pre>
@@ -643,40 +643,47 @@ changes as we can see is that people live longer than they were 60 years
 ago and that there is a drastic increase in GDP per capita too.</p>
 <p>4.4</p>
 <pre class="r"><code>g %&gt;% 
-  filter(!is.na(lifeExpectancy)) %&gt;% 
-  group_by(region) %&gt;% 
+  filter(!is.na(lifeExpectancy), region !=&quot;&quot;) %&gt;% 
+  group_by(region, time) %&gt;% 
   filter(time == 1960 | time == 2019) %&gt;% 
   summarise(n = mean(lifeExpectancy))</code></pre>
-<pre><code>## # A tibble: 6 × 2
-##   region         n
-##   &lt;chr&gt;      &lt;dbl&gt;
-## 1 &quot;&quot;          75.4
-## 2 &quot;Africa&quot;    52.9
-## 3 &quot;Americas&quot;  67.5
-## 4 &quot;Asia&quot;      63.4
-## 5 &quot;Europe&quot;    74.0
-## 6 &quot;Oceania&quot;   65.0</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;region&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 10 × 3
+## # Groups:   region [5]
+##    region    time     n
+##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;
+##  1 Africa    1960  41.5
+##  2 Africa    2019  64.1
+##  3 Americas  1960  58.6
+##  4 Americas  2019  75.8
+##  5 Asia      1960  51.6
+##  6 Asia      2019  74.6
+##  7 Europe    1960  68.3
+##  8 Europe    2019  79.4
+##  9 Oceania   1960  56.4
+## 10 Oceania   2019  73.5</code></pre>
 <p>4.5</p>
 <pre class="r"><code>g %&gt;% 
   filter(time == 1960 | time == 2019) %&gt;% 
   filter(!is.na(region), !is.na(lifeExpectancy), region != &quot;&quot;) %&gt;%
   group_by(region, time) %&gt;% 
   summarise(avr = mean(lifeExpectancy), .groups = &quot;drop&quot;) %&gt;% 
-  mutate(pre = lag(avr), growth = avr - pre) %&gt;%  
-  arrange(-growth)</code></pre>
-<pre><code>## # A tibble: 10 × 5
-##    region    time   avr   pre growth
-##    &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Asia      2019  74.6  51.6  23.0 
-##  2 Africa    2019  64.1  41.5  22.6 
-##  3 Americas  2019  75.8  58.6  17.2 
-##  4 Oceania   2019  73.5  56.4  17.1 
-##  5 Europe    2019  79.4  68.3  11.1 
-##  6 Americas  1960  58.6  64.1  -5.46
-##  7 Europe    1960  68.3  74.6  -6.33
-##  8 Oceania   1960  56.4  79.4 -23.0 
-##  9 Asia      1960  51.6  75.8 -24.2 
-## 10 Africa    1960  41.5  NA    NA</code></pre>
+  mutate(pre = lag(avr), growth = avr - pre) %&gt;%
+  filter(!is.na(pre)) %&gt;% 
+  arrange(growth)</code></pre>
+<pre><code>## # A tibble: 9 × 5
+##   region    time   avr   pre growth
+##   &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Asia      1960  51.6  75.8 -24.2 
+## 2 Oceania   1960  56.4  79.4 -23.0 
+## 3 Europe    1960  68.3  74.6  -6.33
+## 4 Americas  1960  58.6  64.1  -5.46
+## 5 Europe    2019  79.4  68.3  11.1 
+## 6 Oceania   2019  73.5  56.4  17.1 
+## 7 Americas  2019  75.8  58.6  17.2 
+## 8 Africa    2019  64.1  41.5  22.6 
+## 9 Asia      2019  74.6  51.6  23.0</code></pre>
 <p>4.6</p>
 <pre class="r"><code>g %&gt;% 
   filter(!is.na(GDP_PC), time %in% c(1960, 2019)) %&gt;% 

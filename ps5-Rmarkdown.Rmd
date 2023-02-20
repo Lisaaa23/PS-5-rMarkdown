@@ -159,8 +159,8 @@ ggplot(aes(GDP_PC, lifeExpectancy, col=factor(region))) +
 4.4
 ```{r}
 g %>% 
-  filter(!is.na(lifeExpectancy)) %>% 
-  group_by(region) %>% 
+  filter(!is.na(lifeExpectancy), region !="") %>% 
+  group_by(region, time) %>% 
   filter(time == 1960 | time == 2019) %>% 
   summarise(n = mean(lifeExpectancy))
 ```
@@ -172,8 +172,9 @@ g %>%
   filter(!is.na(region), !is.na(lifeExpectancy), region != "") %>%
   group_by(region, time) %>% 
   summarise(avr = mean(lifeExpectancy), .groups = "drop") %>% 
-  mutate(pre = lag(avr), growth = avr - pre) %>%  
-  arrange(-growth)
+  mutate(pre = lag(avr), growth = avr - pre) %>%
+  filter(!is.na(pre)) %>% 
+  arrange(growth)
 ```
 
 4.6
