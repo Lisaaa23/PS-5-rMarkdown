@@ -97,7 +97,7 @@ g %>%
   summarize(n= mean(co2_PC))
 
 ```
-This shows the mean of CO2 emissions per capita each continent release each year. In this chart we can obeserve the difference and whether there is an increase or decrease in different continents with their average CO2 emissions per capita.
+This shows the mean of CO2 emissions per capita each continent release each year. In this chart we can observe the difference and whether there is an increase or decrease in different continents with their average CO2 emissions per capita.
 
 3.5
 ```{r}
@@ -152,7 +152,9 @@ ggplot(aes(GDP_PC, lifeExpectancy, col=factor(region))) +
   labs(x = "GDP Per Capita (2016)", y = "Life Expectancy(2016)",
        col = "Continent")
 ```
+
 4.3. Countries have been stabilized in the similar positions where Europe is still at the top and Africa at the bottom. The only obvious changes as we can see is that people live longer than they were 60 years ago and that there is a drastic increase in GDP per capita too.
+
 
 4.4
 ```{r}
@@ -177,15 +179,13 @@ g %>%
 4.6
 ```{r}
 g %>% 
-  filter(time == 1960 | time == 2019, !is.na(GDP_PC)) %>% 
-  group_by(time) %>% 
-  summarise(avg_gdp = mean(GDP_PC), .groups = "drop") %>% 
-  
-ggplot(aes(x = time, y = avg_gdp, fill = as.factor(time))) +
-  geom_col(position = "dodge") +
-  labs(title = "GDP Per Capita for Years of 1960 and 2019",
-       x = "Year", y = "GDP per Capita") +
-  scale_fill_discrete(name = "Year")
+  filter(!is.na(GDP_PC), time %in% c(1960, 2019)) %>% 
+  ggplot(aes(x = GDP_PC, fill = factor(time))) +
+  geom_histogram(alpha = 0.5, position = "dodge", bins = 30) +
+  scale_fill_manual(values = c("pink", "lightblue"), labels =
+c("1960", "2019")) +
+  labs(x = "GDP per capita", y = "Count", title = "GDP Per Capita 1960 and 2019") +
+  theme_minimal()
 ```
 
 4.7
@@ -207,6 +207,13 @@ g %>%
 
 4.8
 ```{r}
-
+g %>% 
+  select(name, time, lifeExpectancy) %>% 
+  filter(name !="", !is.na(time), !is.na(lifeExpectancy)) %>% 
+  group_by(time) %>% 
+  mutate(rank = rank(desc(lifeExpectancy)), num = length(name)) %>% 
+  filter(name == "United States of America") %>% 
+  mutate(r = rank/num)
 ```
 
+Bruh it took me a long time to do it, maybe I don't know, so many days total, more than 20 hours
